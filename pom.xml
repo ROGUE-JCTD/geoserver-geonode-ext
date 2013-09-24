@@ -90,7 +90,7 @@
       <artifactId>commons-httpclient</artifactId>
       <version>3.1</version>
     </dependency>
-    
+
     <dependency>
         <groupId>org.opengeo.geoserver</groupId>
         <artifactId>importer</artifactId>
@@ -126,6 +126,13 @@
     </dependency>
 
     <dependency>
+        <groupId>org.opengeo.geoserver</groupId>
+        <artifactId>mapmeter</artifactId>
+        <version>${geoserver.version}</version>
+        <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
         <groupId>org.geotools</groupId>
         <artifactId>gt-shapefile</artifactId>
         <version>${geotools.version}</version>
@@ -138,7 +145,7 @@
     </dependency>
 
 
-    
+
 
     <!-- GeoJSON module dependencies -->
     <dependency>
@@ -147,14 +154,14 @@
       <version>2.2.3</version>
       <classifier>jdk15</classifier>
     </dependency>
-    
+
     <!-- This dependency is temporary in order to hold a fake process while developing the REST process wrapper -->
     <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-process</artifactId>
       <version>${geotools.version}</version>
     </dependency>
-    
+
     <!--  test dependencies  -->
     <dependency>
       <groupId>junit</groupId>
@@ -207,8 +214,8 @@
       <version>2.3</version>
       <scope>test</scope>
     </dependency>
-    
-    
+
+
     <!-- Jetty runner dependencies -->
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
@@ -283,7 +290,7 @@
             <argLine>-XX:MaxPermSize=256m</argLine>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -302,7 +309,7 @@
           <stopKey>geonode-stop</stopKey>
           <scanIntervalSeconds>30</scanIntervalSeconds>
           <contextPath>/geoserver</contextPath>
-          
+
           <webApp>${project.build.directory}/geoserver</webApp>
         </configuration>
       </plugin>
@@ -326,13 +333,13 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>2.3</version>
         <configuration>
-          <warName>geoserver</warName> 
+          <warName>geoserver</warName>
           <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
           <packagingExcludes>**/data/</packagingExcludes>
           <packagingExcludes>**/web-app*.jar</packagingExcludes>
