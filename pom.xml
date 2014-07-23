@@ -6,6 +6,21 @@
   <version>${geoserver.version}</version>
   <name>GeoNode GeoServer Extensions</name>
 
+  <distributionManagement>
+    <repository>
+      <id>opengeo</id>
+      <name>OpenGeo Maven Repository</name>
+      <url>dav:http://repo.opengeo.org</url>
+      <uniqueVersion>false</uniqueVersion>
+    </repository>
+    <snapshotRepository>
+      <id>opengeo</id>
+      <name>OpenGeo Maven Repository</name>
+      <url>dav:http://repo.opengeo.org</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
   <repositories>
     <repository>
       <id>opengeo</id>
