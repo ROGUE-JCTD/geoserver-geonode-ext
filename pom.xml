@@ -3,7 +3,7 @@
   <groupId>org.opengeo</groupId>
   <artifactId>geonode-geoserver-ext</artifactId>
   <packaging>jar</packaging>
-  <version>2.5.1</version>
+  <version>2.5.2</version>
   <name>GeoNode GeoServer Extensions</name>
 
   <distributionManagement>
@@ -134,20 +134,13 @@
         <version>${geoserver.version}</version>
         <scope>runtime</scope>
     </dependency>
-
-<!--
-   This was discontinued from the opengeo repo for
-   geoserver version 2.5. If someone is able to get a 2.5.1
-   version deployed repo.opengeo.org this can be enabled again.
-   Commented out by ingenieroariel on May 29, 2014.
-
     <dependency>
-        <groupId>org.opengeo.data.csv</groupId>
-        <artifactId>csv</artifactId>
+        <groupId>org.geoserver.importer</groupId>
+        <artifactId>gs-importer-bdb</artifactId>
         <version>${geoserver.version}</version>
         <scope>runtime</scope>
     </dependency>
--->
+
     <dependency>
       <groupId>org.geoserver.extension</groupId>
       <artifactId>gs-wps-core</artifactId>
@@ -169,6 +162,13 @@
     </dependency>
 
     <dependency>
+        <groupId>org.opengeo.geoserver</groupId>
+        <artifactId>mapmeter</artifactId>
+        <version>2.5-SNAPSHOT</version>
+        <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
         <groupId>org.geotools</groupId>
         <artifactId>gt-shapefile</artifactId>
         <version>${geotools.version}</version>
@@ -177,11 +177,8 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>11.0.1</version>
+      <version>17.0</version>
     </dependency>
-
-
-    
 
     <!-- GeoJSON module dependencies -->
     <dependency>
@@ -190,14 +187,14 @@
       <version>2.2.3</version>
       <classifier>jdk15</classifier>
     </dependency>
-    
+
     <!-- This dependency is temporary in order to hold a fake process while developing the REST process wrapper -->
     <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-process</artifactId>
       <version>${geotools.version}</version>
     </dependency>
-    
+
     <!--  test dependencies  -->
     <dependency>
       <groupId>junit</groupId>
@@ -250,8 +247,8 @@
       <version>2.3</version>
       <scope>test</scope>
     </dependency>
-    
-    
+
+
     <!-- Jetty runner dependencies -->
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
@@ -274,7 +271,7 @@
   </dependencies>
   <properties>
     <geotools.version>11.1</geotools.version>
-    <geoserver.version>2.5.1</geoserver.version>
+    <geoserver.version>2.5.2</geoserver.version>
     <jetty.version>6.1.8</jetty.version>
     <maven.test.search.classdir>true</maven.test.search.classdir>
   </properties>
@@ -310,20 +307,23 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.0</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.6</source>
+          <target>1.6</target>
+          <debug>true</debug>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12.3</version>
         <configuration>
             <argLine>-XX:MaxPermSize=256m</argLine>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -342,7 +342,7 @@
           <stopKey>geonode-stop</stopKey>
           <scanIntervalSeconds>30</scanIntervalSeconds>
           <contextPath>/geoserver</contextPath>
-          
+
           <webApp>${project.build.directory}/geoserver</webApp>
         </configuration>
       </plugin>
@@ -366,12 +366,13 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
         <configuration>
-          <warName>geoserver</warName> 
+          <warName>geoserver</warName>
           <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
           <packagingExcludes>**/data/</packagingExcludes>
           <packagingExcludes>**/gs-web-app*.jar</packagingExcludes>
