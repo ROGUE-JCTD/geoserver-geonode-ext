@@ -10,15 +10,9 @@
     <repository>
       <id>opengeo</id>
       <name>OpenGeo Maven Repository</name>
-      <url>dav:http://repo.opengeo.org</url>
+      <url>dav:http://repo.boundlessgeo.com/main</url>
       <uniqueVersion>false</uniqueVersion>
     </repository>
-    <snapshotRepository>
-      <id>opengeo</id>
-      <name>OpenGeo Maven Repository</name>
-      <url>dav:http://repo.opengeo.org</url>
-      <uniqueVersion>false</uniqueVersion>
-    </snapshotRepository>
   </distributionManagement>
 
   <repositories>
@@ -35,8 +29,12 @@
       <url>http://dev.mapfish.org/maven/repository</url>
     </repository>
     <repository>
-      <id>osgeo</id>
-      <url>http://download.osgeo.org/webdav/geotools</url>
+      <id>oracle</id>
+      <name>Oracles Maven Repository</name>
+      <url>http://download.oracle.com/maven/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
   </repositories>
 
@@ -61,11 +59,6 @@
     -->
 
     <dependency>
-      <groupId>org.geoserver.extension</groupId>
-      <artifactId>gs-printing</artifactId>
-      <version>${geoserver.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.geoserver</groupId>
       <artifactId>gs-restconfig</artifactId>
       <version>${geoserver.version}</version>
@@ -74,11 +67,6 @@
       <groupId>org.geoserver.extension</groupId>
       <artifactId>gs-web-wps</artifactId>
       <version>${geoserver.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>xerces</groupId>
-      <artifactId>xercesImpl</artifactId>
-      <version>2.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.geoserver.extension</groupId>
@@ -128,20 +116,13 @@
         <version>${geoserver.version}</version>
         <scope>runtime</scope>
     </dependency>
-
-<!--
-   This was discontinued from the opengeo repo for
-   geoserver version 2.5. If someone is able to get a 2.5.1
-   version deployed repo.opengeo.org this can be enabled again.
-   Commented out by ingenieroariel on May 29, 2014.
-
     <dependency>
-        <groupId>org.opengeo.data.csv</groupId>
-        <artifactId>csv</artifactId>
+        <groupId>org.geoserver.importer</groupId>
+        <artifactId>gs-importer-bdb</artifactId>
         <version>${geoserver.version}</version>
         <scope>runtime</scope>
     </dependency>
--->
+
     <dependency>
       <groupId>org.geoserver.extension</groupId>
       <artifactId>gs-wps-core</artifactId>
@@ -163,9 +144,65 @@
     </dependency>
 
     <dependency>
+        <groupId>org.opengeo.geoserver</groupId>
+        <artifactId>mapmeter</artifactId>
+        <version>${geoserver.version}</version>
+        <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
         <groupId>org.geotools</groupId>
         <artifactId>gt-shapefile</artifactId>
         <version>${geotools.version}</version>
+    </dependency>
+
+<!--    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>17.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sleepycat</groupId>
+      <artifactId>je</artifactId>
+      <version>5.0.84</version>
+    </dependency>-->
+
+    <dependency>
+        <groupId>org.opengeo.geoserver</groupId>
+        <artifactId>gs-geogig</artifactId>
+        <version>${gsgeogig.version}</version>
+        <classifier>shaded-plugin</classifier>
+        <exclusions>
+            <exclusion>
+                <groupId>org.geogig</groupId>
+                <artifactId>geogig-core</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.geogig</groupId>
+                <artifactId>geogig-geotools</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.geogig</groupId>
+                <artifactId>geogig-web-api</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.geotools</groupId>
+                <artifactId>gt-geojson</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.geotools.jdbc</groupId>
+                <artifactId>gt-jdbc-spatialite</artifactId>
+            </exclusion>
+        </exclusions>
     </dependency>
 
     <!-- GeoJSON module dependencies -->
@@ -175,14 +212,14 @@
       <version>2.2.3</version>
       <classifier>jdk15</classifier>
     </dependency>
-    
+
     <!-- This dependency is temporary in order to hold a fake process while developing the REST process wrapper -->
     <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-process</artifactId>
       <version>${geotools.version}</version>
     </dependency>
-    
+
     <!--  test dependencies  -->
     <dependency>
       <groupId>junit</groupId>
@@ -235,8 +272,8 @@
       <version>2.3</version>
       <scope>test</scope>
     </dependency>
-    
-    
+
+
     <!-- Jetty runner dependencies -->
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
@@ -261,6 +298,7 @@
     <geotools.version>12-SNAPSHOT</geotools.version>
     <geoserver.version>2.6-SNAPSHOT</geoserver.version>
     <jetty.version>6.1.8</jetty.version>
+    <gsgeogig.version>2.6-SNAPSHOT</gsgeogig.version>
     <maven.test.search.classdir>true</maven.test.search.classdir>
   </properties>
   <profiles>
@@ -295,20 +333,23 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.0</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.6</source>
+          <target>1.6</target>
+          <debug>true</debug>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12.3</version>
         <configuration>
             <argLine>-XX:MaxPermSize=256m</argLine>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -327,7 +368,7 @@
           <stopKey>geonode-stop</stopKey>
           <scanIntervalSeconds>30</scanIntervalSeconds>
           <contextPath>/geoserver</contextPath>
-          
+
           <webApp>${project.build.directory}/geoserver</webApp>
         </configuration>
       </plugin>
@@ -351,12 +392,13 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
         <configuration>
-          <warName>geoserver</warName> 
+          <warName>geoserver</warName>
           <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
           <packagingExcludes>**/data/</packagingExcludes>
           <packagingExcludes>**/gs-web-app*.jar</packagingExcludes>
