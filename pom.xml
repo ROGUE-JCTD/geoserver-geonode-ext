@@ -168,42 +168,18 @@
       <version>5.0.84</version>
     </dependency>-->
 
-    <dependency>
+<!--    <dependency>
         <groupId>org.opengeo.geoserver</groupId>
         <artifactId>gs-geogig</artifactId>
         <version>${gsgeogig.version}</version>
         <classifier>shaded-plugin</classifier>
         <exclusions>
             <exclusion>
-                <groupId>org.geogig</groupId>
-                <artifactId>geogig-core</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.geogig</groupId>
-                <artifactId>geogig-geotools</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.geogig</groupId>
-                <artifactId>geogig-web-api</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-geojson</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.geotools.jdbc</groupId>
-                <artifactId>gt-jdbc-spatialite</artifactId>
+                <groupId>*</groupId>
+                <artifactId>*</artifactId>
             </exclusion>
         </exclusions>
-    </dependency>
+    </dependency>-->
 
     <!-- GeoJSON module dependencies -->
     <dependency>
