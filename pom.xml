@@ -1,10 +1,10 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opengeo</groupId>
-  <artifactId>geonode-geoserver-ext</artifactId>
+  <artifactId>mapstory-geoserver</artifactId>
   <packaging>jar</packaging>
   <version>2.6-SNAPSHOT</version>
-  <name>GeoNode GeoServer Extensions</name>
+  <name>MapStory GeoServer</name>
 
   <distributionManagement>
     <repository>
@@ -106,6 +106,12 @@
         <version>${geoserver.version}</version>
         <scope>runtime</scope>
     </dependency>
+    <dependency>
+        <groupId>org.geoserver.importer</groupId>
+        <artifactId>gs-importer-web</artifactId>
+        <version>${geoserver.version}</version>
+        <scope>runtime</scope>
+    </dependency>
 
     <dependency>
       <groupId>org.geoserver.extension</groupId>
@@ -119,6 +125,12 @@
       <artifactId>gt-xsd-kml</artifactId>
       <version>${geotools.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.geotools.xsd</groupId>
+      <artifactId>gt-xsd-core</artifactId>
+      <version>${geotools.version}</version>
+    </dependency>
+
     <dependency>
         <groupId>org.geotools</groupId>
         <artifactId>gt-shapefile</artifactId>
@@ -396,13 +408,20 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>2.3</version>
         <configuration>
           <warName>geoserver</warName>
           <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
           <packagingExcludes>**/data/</packagingExcludes>
           <packagingExcludes>**/gs-web-app*.jar</packagingExcludes>
         </configuration>
+         <executions>
+           <execution>
+             <phase>package</phase>
+             <goals>
+               <goal>war</goal>
+             </goals>
+           </execution>
+         </executions>   
       </plugin>
     </plugins>
 
