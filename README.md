@@ -22,6 +22,8 @@ cd ..
 
 cd geoserver-geonode-ext
 mvn install -DskipTests
+
+mvn war:war
 ```
 
 geoserver-geonode-ext
