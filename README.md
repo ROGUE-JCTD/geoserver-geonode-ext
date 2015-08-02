@@ -1,3 +1,31 @@
+building geoserver 2.6 for mapstory
+=============================================
+Do run the tests when appropriate:
+ 
+```
+git clone -b mapstory-2.6.x https://github.com/MapStory/geoserver-geonode-ext.git
+cd geoserver-geonode-ext
+# just clean, dont build yet
+mvn clean -DskipTests
+cd ..
+
+git clone -b postgis-xdate-udt-12.x https://github.com/MapStory/geotools.git
+cd geotools 
+mvn install -DskipTests
+cd ..
+
+# build latest 2.6.x geogig, rest api fi
+git clone -b 2.6.x https://github.com/boundlessgeo/geoserver-exts.git
+cd geoserver-exts
+mvn install -DskipTests
+cd ..
+
+cd geoserver-geonode-ext
+mvn install -DskipTests
+
+mvn war:war
+```
+
 geoserver-geonode-ext
 =====================
 
