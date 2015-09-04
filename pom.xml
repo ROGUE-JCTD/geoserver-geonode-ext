@@ -192,30 +192,23 @@
         </exclusions>
     </dependency>
 
-<!--    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>17.0</version>
-    </dependency>
-
+    <!-- MBTiles dependencies: allows publishing of MBTiles as a layer
     <dependency>
-      <groupId>com.sleepycat</groupId>
-      <artifactId>je</artifactId>
-      <version>5.0.84</version>
-    </dependency>-->
-
-<!--    <dependency>
-        <groupId>org.opengeo.geoserver</groupId>
-        <artifactId>gs-geogig</artifactId>
-        <version>${gsgeogig.version}</version>
-        <classifier>shaded-plugin</classifier>
-        <exclusions>
-            <exclusion>
-                <groupId>*</groupId>
-                <artifactId>*</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency>-->
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.7.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-mbtiles</artifactId>
+      <version>${geotools.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geoserver.community</groupId>
+      <artifactId>gs-mbtiles</artifactId>
+      <version>${geoserver.version}</version>
+    </dependency>
+    -->
 
     <!-- GeoJSON module dependencies -->
     <dependency>
