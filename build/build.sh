@@ -27,7 +27,7 @@ cd ${REPOS_DIR}
 
 # has a date fix which allows importing layers with time attrib into geogig
 git clone -b 2.6.x https://github.com/rogue-jctd/geoserver.git
-cd geoserver/src
+cd geoserver/src/extension/importer
 mvn install -DskipTests
 cd ${REPOS_DIR}
 
