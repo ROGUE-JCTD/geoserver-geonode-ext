@@ -31,8 +31,9 @@ cd geoserver/src/extension/importer
 mvn install -DskipTests
 cd ${REPOS_DIR}
 
-# build latest 2.6.x geogig rest api, no nightly snapshots available
-git clone -b 2.6.x https://github.com/boundlessgeo/geoserver-exts.git
+# build latest 2.6.x geogig rest api, no nightly snapshots available. 
+# pull it in from rogue since needed a build fix for jline
+git clone -b 2.6.x https://github.com/rogue-jctd/geoserver-exts.git
 cd geoserver-exts
 mvn install -DskipTests
 cd ${REPOS_DIR}
