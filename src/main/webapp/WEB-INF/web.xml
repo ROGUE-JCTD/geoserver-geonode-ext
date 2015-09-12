@@ -53,6 +53,10 @@
         <param-value>C:\eclipse\workspace\geoserver_trunk\cite\confCiteWFSPostGIS</param-value>
     </context-param> 
    -->
+    <context-param>
+        <param-name>GEOSERVER_XSTREAM_WHITELIST</param-name>
+        <param-value>org.geonode.security.*</param-value>
+    </context-param>
     
     <!-- pick up all spring application contexts -->
     <context-param>
