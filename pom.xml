@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opengeo</groupId>
-  <artifactId>mapstory-geoserver</artifactId>
+  <artifactId>geoshape-geoserver</artifactId>
   <packaging>jar</packaging>
   <version>2.6-SNAPSHOT</version>
   <name>MapStory GeoServer</name>
